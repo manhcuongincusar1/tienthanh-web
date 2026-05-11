@@ -7,7 +7,7 @@
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider umi build",
     "build-uat": "cross-env NODE_OPTIONS=--openssl-legacy-provider REACT_APP_ENV=uat umi build",
-    "build-prod": "cross-env NODE_OPTIONS=--openssl-legacy-provider UMI_ENV=prod REACT_APP_ENV=prod umi build",
+    "build-prod": "cross-env NODE_OPTIONS=--openssl-legacy-provider UMI_APP_API=https://tienthanhapi.datviet.ai/_api UMI_APP_DEV_API=http://localhost:3002/_api UMI_APP_ROOT=https://tienthanhapi.datviet.ai UMI_APP_DEV_ROOT=http://localhost:3002 UMI_APP_CDN_BASE=https://tienthanhcdn.datviet.ai UMI_ADMINISTRATIVE_DEV_API=http://localhost:3011/_api UMI_APP_SHOW_BRANCH=1 runtime-env-cra --config-name=./public/runtime-env.js && cross-env NODE_OPTIONS=--openssl-legacy-provider REACT_APP_ENV=prod umi build",
     "deploy": "npm run build && npm run gh-pages",
     "dev": "npm run start:dev",
     "gh-pages": "gh-pages -d dist",
