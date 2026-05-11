@@ -17,7 +17,7 @@ yarn-error.log
 /coverage
 .idea
 yarn.lock
-package-lock.json
+# package-lock.json committed for npm ci reproducible build
 pnpm-lock.yaml
 *bak
 
@@ -38,3 +38,7 @@ screenshot
 .eslintcache
 
 build
+
+# SST v3
+.sst/
+sst-env.d.ts

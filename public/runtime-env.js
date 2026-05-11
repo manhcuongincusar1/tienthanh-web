@@ -1,1 +1,1 @@
-window.__RUNTIME_CONFIG__ = {"REACT_APP_ENV":"dev","REACT_APP_API_URL":"http://localhost:3002","REACT_APP_CDN_BASE":"http://localhost:3002/uploads"};
+window.__RUNTIME_CONFIG__ = {"UMI_APP_API":"https://tita-api-qat.eos-solutions.asia/_api","UMI_APP_DEV_API":"http://localhost:3002/_api","UMI_APP_ROOT":"https://tita-api-qat.eos-solutions.asia","UMI_APP_DEV_ROOT":"http://localhost:3002","UMI_ADMINISTRATIVE_DEV_API":"http://localhost:3011/_api","UMI_APP_SHOW_BRANCH":"1"};

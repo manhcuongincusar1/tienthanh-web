@@ -1,7 +1,9 @@
-// S5 task 01 — đọc env qua src/utils/env.ts (runtime > build > fallback).
-// Giữ shape Settings.APP_API / APP_ROOT cũ → call sites khắp src/api/* không phải đổi.
+const isDev = process.env.NODE_ENV === 'development';
+let RUNTIME_ENV = {};
+if (typeof window !== 'undefined') {
+  RUNTIME_ENV = window.__RUNTIME_CONFIG__;
+}
 import { Settings as LayoutSettings } from '@ant-design/pro-layout';
-import { API_URL, CDN_BASE } from '../src/utils/env';
 
 const Settings: LayoutSettings & {
   pwa?: boolean;
@@ -15,6 +17,7 @@ const Settings: LayoutSettings & {
   SHOW_BRANCH: string;
 } = {
   navTheme: 'light',
+  // 拂晓蓝
   primaryColor: '#3169B3',
   layout: 'mix',
   contentWidth: 'Fluid',
@@ -25,20 +28,15 @@ const Settings: LayoutSettings & {
   pwa: false,
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   iconfontUrl: '',
-  // APP_API = `${REACT_APP_API_URL}/_api` — BE mount routes dưới /_api/*.
-  APP_API: API_URL ? `${API_URL}/_api` : '',
-  APP_ROOT: API_URL || '',
-  APP_API_ADMINISTRATIVE: API_URL ? `${API_URL}/_api` : '',
+  APP_API: (isDev ? process.env.UMI_APP_DEV_API : RUNTIME_ENV.UMI_APP_API) || '',
+  APP_ROOT: (isDev ? process.env.UMI_APP_DEV_ROOT : RUNTIME_ENV.UMI_APP_ROOT) || '',
+  APP_API_ADMINISTRATIVE:
+    (isDev ? process.env.UMI_ADMINISTRATIVE_DEV_API : RUNTIME_ENV.UMI_ADMINISTRATIVE_API) || '',
   secretKey: 'djfshfsdjfhdsfjdshfjsdfh',
   publicVapidKey:
     'BEEQu35i-gHV59m-9JfaLbtBDRQN1W3su3niYGII7o55iWIe50cLi60h0qkgY4OMY_bAg1Q2rk5VLmdATEdeTmc',
   useServiceWorker: true,
-  SHOW_BRANCH: '1',
+  SHOW_BRANCH: (isDev ? process.env.UMI_APP_SHOW_BRANCH : RUNTIME_ENV.UMI_APP_SHOW_BRANCH) || '',
 };
-
-// Expose CDN_BASE qua window cho `src/components/MediaImage` (S3 task 08).
-if (typeof window !== 'undefined' && CDN_BASE) {
-  (window as any).__CDN_BASE__ = CDN_BASE;
-}
 
 export default Settings;
