@@ -1,0 +1,65 @@
+.proformUserInfo {
+  :global(.ant-space.ant-space-horizontal.ant-space-align-center) {
+    float: right;
+  }
+  :global(.ant-input[disabled]) {
+    color: #4b5563;
+  }
+}
+.avatarWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .avatarTop {
+    width: 240px;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 50%;
+    .avatarImg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      .avatarDelete {
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(51, 51, 51, 0.3);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+        .avatarDeleteIcon {
+          display: block;
+          padding: 2px;
+          color: white;
+          cursor: pointer;
+        }
+      }
+      &:hover {
+        .avatarDelete {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+    .nonAvatar {
+      width: 100%;
+      height: 100%;
+      background: #fafafa;
+      border: dashed 1px #d9d9d9;
+      border-radius: 50%;
+    }
+  }
+  .avatarBottom {
+    margin-top: 20px;
+    text-align: center;
+  }
+}

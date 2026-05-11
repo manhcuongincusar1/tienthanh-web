@@ -1,0 +1,12 @@
+FROM node:14.17.0-alpine AS builder
+
+# set working directory
+WORKDIR /app
+
+RUN apk add --no-cache zip yarn
+
+# add app
+COPY ./package.json /app
+#COPY ./package-lock.json /app
+#COPY ./yarn.lock /app
+RUN yarn cache clean && yarn install

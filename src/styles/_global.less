@@ -1,0 +1,316 @@
+:root {
+  --ant-primary-color: #3169b3 !important;
+  --ant-primary-color-hover: #1996d4 !important;
+  --ant-primary-5: #1996d4 !important;
+  --primary-black: #1d1e20;
+}
+
+body {
+  color: #1d1e20;
+  font-size: 1rem;
+  font-family: 'SVN-Gilroy', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  line-height: 1.4;
+}
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+svg {
+  path {
+    transition: fill 0.4s ease, stroke 0.4s ease;
+  }
+}
+.d-block {
+  display: block;
+}
+.mx-auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+.mb-3 {
+  margin-bottom: 1rem !important;
+  @media (max-width: 767px) {
+    margin-bottom: 10px !important;
+  }
+}
+.mb-4 {
+  margin-bottom: 24px !important;
+  @media (max-width: 767px) {
+    margin-bottom: 16px !important;
+  }
+}
+.mt-2 {
+  margin-top: 12/16rem !important;
+}
+// button
+body {
+  .ant-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 40/16rem;
+    padding: 4/16rem 15/16rem;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    white-space: normal;
+    span + svg {
+      margin-left: 8px;
+    }
+    svg + span {
+      margin-left: 8px;
+    }
+    &.ant-btn-icon-only {
+      justify-content: center;
+    }
+    &.ant-btn-icon-only.ant-btn-lg {
+      width: auto;
+      & > * {
+        font-size: 24px;
+      }
+    }
+    &.ant-btn-circle {
+      border-radius: 30px;
+    }
+    &.ant-btn-text:hover {
+      color: var(--ant-primary-color-hover);
+    }
+    @media (max-width: 767px) {
+      min-height: 30px;
+      padding: 5px 11px;
+      font-size: 14px;
+      line-height: 15px;
+      letter-spacing: 0.5px;
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+  .ant-btn-sm {
+    min-height: 30/16rem;
+    padding: 4/16rem 11/16rem;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+}
+.ant-design-pro {
+  .ant-menu {
+    font-size: 16px;
+    @media (max-width: 767px) {
+      font-size: 14px;
+    }
+  }
+  // breadcrumb
+  .ant-breadcrumb {
+    &-link {
+      a {
+        color: inherit;
+        &:hover {
+          color: var(--ant-primary-color-hover);
+        }
+      }
+    }
+    li:last-child {
+      .ant-breadcrumb-link {
+        color: #3169b3;
+        font-weight: 600;
+        a {
+          color: inherit;
+        }
+      }
+    }
+    color: #1d1e20;
+    font-size: 16px;
+
+    letter-spacing: 1.5px;
+  }
+  .ant-layout-header {
+    color: var(--primary-black);
+  }
+  //
+
+  .ant-pro-page-container-warp {
+    background-color: transparent;
+  }
+  .ant-page-header {
+    padding: 0 24px 16px;
+    background-color: transparent;
+    @media (max-width: 767px) {
+      padding: 16px 16px 10px;
+    }
+  }
+  .ant-pro-page-container-children-content {
+    margin-top: 14px;
+    @media (max-width: 767px) {
+      margin-top: 6px;
+      margin-right: 16px;
+      margin-left: 16px;
+    }
+  }
+  .ant-breadcrumb + .ant-page-header-heading {
+    margin-top: 20px;
+    @media (max-width: 767px) {
+      margin-top: 13px;
+    }
+  }
+  .ant-page-header-heading {
+    &-title {
+      display: inline-flex;
+      align-items: center;
+      color: #1d1e20;
+      font-weight: 600;
+      font-size: 30/16rem;
+      line-height: 1.4;
+      @media (max-width: 767px) {
+        font-size: 22px;
+      }
+      span {
+        display: block;
+        padding-top: 4px;
+      }
+    }
+    &-back {
+      display: block;
+      flex-shrink: 0;
+      margin-right: 1rem;
+      color: var(--primary-black);
+      svg {
+        display: block;
+      }
+      &:hover {
+        color: var(--ant-primary-color-hover);
+      }
+    }
+  }
+  .ant-pro-form-collapse-button {
+    display: flex;
+    align-items: center;
+    color: #1d1e20;
+    font-weight: 700;
+    font-size: 1rem;
+    svg {
+      display: block;
+      margin-left: 8px;
+      path {
+        transition: fill 0.4s ease;
+      }
+      &.collapsed {
+        transform: rotate(180deg);
+      }
+    }
+    &:hover {
+      color: var(--ant-primary-color);
+      svg path {
+        fill: var(--ant-primary-color);
+      }
+    }
+  }
+
+  .ant-pro-footer-bar {
+    padding: 0.5rem 1.5rem;
+  }
+  // pagination
+
+  .ant-pagination-prev,
+  .ant-pagination-next,
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next {
+    min-width: 30px;
+    height: 30px;
+    .ant-pagination-item-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .ant-pagination .ant-pagination-item-container {
+    width: 100%;
+  }
+  .ant-pagination .ant-pagination-item {
+    min-width: 30px;
+    height: 30px;
+    margin-right: 6px;
+    a {
+      padding: 3px 6px;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+  .ant-pagination-prev,
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next {
+    margin-right: 6px;
+  }
+  .ant-pagination .ant-pagination-item:not(.ant-pagination-item-active) {
+    border-color: #c6ccd3;
+    &:hover {
+      color: #1996d4;
+      border-color: #1996d4;
+      a {
+        color: inherit;
+      }
+    }
+  }
+  .ant-pagination-options {
+    margin-left: 6px;
+    .ant-select {
+      height: 30px;
+      font-weight: 500;
+      &:not(.ant-select-customize-input) .ant-select-selector {
+        height: 30px;
+      }
+      .ant-select-selector .ant-select-selection-item {
+        line-height: 30px;
+      }
+    }
+  }
+
+  .section-title {
+    margin-bottom: 24px;
+    padding: 0 0 16px;
+    color: #3169b3;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #c6ccd3;
+  }
+  .section-space-top {
+    display: block;
+    clear: both;
+    width: 100%;
+    padding-top: 1rem;
+  }
+}
+
+.d-none {
+  display: none;
+}
+.d-md-block {
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+.d-block {
+  display: block;
+}
+.d-md-none {
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+.col-item {
+  margin-bottom: 24px;
+}
+.ant-modal-confirm {
+  .ant-modal-confirm-btns {
+    .ant-btn {
+      border-radius: 30px;
+    }
+  }
+}

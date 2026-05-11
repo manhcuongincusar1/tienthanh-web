@@ -1,0 +1,21 @@
+export default {
+  'pages.management.branch_code': 'Mã chi nhánh',
+  'pages.management.branch.tooltip.search': 'Tìm kiếm theo Mã, Tên, Mã Số Thuế, Địa chỉ',
+  'pages.management.branch_title': 'Tên chi nhánh',
+  'pages.management.district_name': 'Quận/Huyện',
+  'pages.management.province_city_name': 'Tỉnh/Thành phố',
+  'pages.management.ward_name': 'Phường/Xã',
+  'pages.management.branch': 'Danh sách chi nhánh',
+  'pages.management.branch_name': 'Tên chi nhánh',
+  'pages.management.address': 'Địa chỉ',
+  'pages.management.tax_code': 'Mã số thuế',
+  'pages.management.over_item_select': 'Không được vượt quá {max}',
+  'pages.management.amount_sale': 'Số lượng Sale',
+  'pages.management.create_branch': 'Tạo mới chi nhánh',
+  'pages.management.update_branch': 'Cập nhật chi nhánh',
+  'pages.management.duplicate_tax': 'Trùng mã số thuế. Vui lòng thử lại',
+  'pages.management.permissions': 'Phân quyền chi nhánh',
+  'pages.management.information': 'Thông tin chung',
+  'pages.management.search_tooltip':
+    'Tìm kiếm theo: Mã chi nhánh, Tên chi nhánh, Mã số Thuế, Địa chỉ',
+};

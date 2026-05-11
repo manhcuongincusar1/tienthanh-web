@@ -1,0 +1,57 @@
+body {
+  .ant-pro-card {
+    .ant-pro-card-header .ant-pro-card-title {
+      color: #3169b3;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 0.5/16rem;
+    }
+    .ant-pro-card-header-border {
+      position: relative;
+      border: none;
+      &:after {
+        position: absolute;
+        right: 24px;
+        bottom: 0;
+        left: 24px;
+        border-top: 1px solid #c6ccd3;
+        content: '';
+        @media (max-width: 767px) {
+          right: 16px;
+          left: 16px;
+        }
+      }
+    }
+    .ant-pro-card-header-collapsible {
+      margin-bottom: 1rem;
+      padding: 0;
+      .ant-pro-card-title {
+        color: #1d1e20;
+        .ant-pro-card-collapsible-icon {
+          width: 24px;
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+  .ant-pro-card-header-collapsible {
+    .ant-pro-card-title {
+      display: inline-flex;
+      align-items: center;
+      svg {
+        margin-top: -2px;
+        margin-right: 12px;
+      }
+    }
+  }
+  @media (max-width: 767px) {
+    .ant-pro-card-body,
+    .ant-pro-card-header {
+      padding: 16px;
+    }
+  }
+}
+.collapsible-block {
+  padding-left: 36px;
+}

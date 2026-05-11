@@ -1,0 +1,15 @@
+export default {
+  'pages.change_status_real_estate.category': 'Danh mục BĐS',
+  'pages.change_status_real_estate.sell_internal': 'Nội bộ bán',
+  'pages.change_status_real_estate.rent_internal': 'Nội bộ cho Thuê',
+  'pages.change_status_real_estate.title': 'Thay đổi trạng thái BDS',
+  'pages.change_status_real_estate.breadcrumb': 'Báo cáo thay đổi trạng thái BDS',
+  'pages.change_status_real_estate.status': 'Trạng thái',
+  'pages.change_status_real_estate.province': 'Thành phố',
+  'pages.change_status_real_estate.address': 'Địa chỉ',
+  'pages.change_status_real_estate.type': 'Phân loại',
+  'pages.change_status_real_estate.price_billion': 'Giá (tỷ VNĐ)',
+  'pages.change_status_real_estate.price_million': 'Giá (triệu VNĐ)',
+  'pages.change_status_real_estate.range_price_billion': 'Phân khúc giá (tỷ VND)',
+  'pages.change_status_real_estate.range_price_million': 'Phân khúc giá (triệu VND)',
+};

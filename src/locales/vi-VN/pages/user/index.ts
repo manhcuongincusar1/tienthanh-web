@@ -1,0 +1,35 @@
+export default {
+  'pages.user.user_info': 'Thông tin tài khoản',
+  'pages.user.personal_info': 'Thông tin cá nhân',
+  'pages.user.full_name': 'Họ và tên',
+  'pages.user.phone': 'Số điện thoại',
+  'pages.user.email': 'Email',
+  'pages.user.branch': 'Chi nhánh',
+  'pages.user.district': 'Quận/huyện',
+  'pages.user.province': 'Tỉnh/Thành phố',
+  'pages.user.range_price_sell': 'Khoảng giá bán (tỷ VND)',
+  'pages.user.range_price_rent': 'Khoảng giá thuê (triệu VND)',
+  'pages.user.change_password': 'Đổi mật khẩu',
+  'pages.user.forgot_password.title': 'Quên mật khẩu',
+  'pages.user.forgot_password.send_success': 'Gửi yêu cầu thành công!',
+  'pages.user.reset_password.create': 'Tạo mật khẩu mới',
+  'pages.user.change_password.first': 'Cập nhật mật khẩu',
+  'pages.user.login': 'Đăng nhập',
+  'pages.user.update': 'Cập nhật',
+  'pages.user.reset_password.rejected':
+    'Không thể tạo mật khẩu mới. Bạn vui lòng gửi lại yêu cầu khác để tiếp tục.',
+  'pages.user.edit_image': 'Chỉnh sửa hình ảnh',
+  'pages.user.change_password.success': 'Đổi mật khẩu thành công',
+  'pages.user.reset_password.expire': 'Link đổi mật khẩu hết hạn!',
+  'pages.user.forgot_password.check_mail':
+    ' Hãy kiểm tra hộp thư của bạn và làm theo hướng dẫn để thay đổi mật khẩu.',
+  'pages.user.forgot_password.sub_title':
+    'Nhập địa chỉ email đăng ký tài khoản của bạn. {br}Chúng tôi sẽ gửi email cho bạn để tạo lại mật khẩu mới.',
+  'pages.user.info.update_success': 'Cập nhật thông tin thành công',
+  'pages.user.info.update_password_success':
+    'Cập nhật mật khẩu thành công. Bạn vui lòng đăng nhập lại',
+  'pages.user.info.update_error': 'Cập nhật thông tin thất bại',
+  'pages.user.info.file_size_error': 'Dung lượng file quá lớn',
+  'pages.user.info.file_type_error': 'File không đúng định dạng',
+  'pages.user.info.enter_image': 'Chọn ảnh',
+};

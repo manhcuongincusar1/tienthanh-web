@@ -1,0 +1,18 @@
+export default {
+  'pages.import_export.import_list': 'Danh sách yêu cầu Import',
+  'pages.import_export.export_list': 'Danh sách yêu cầu Export',
+  'pages.import_export.export.request_date': 'Ngày gửi yêu cầu',
+  'pages.import_export.export.file_title': 'Tên',
+  'pages.import_export.export.type': 'Loại',
+  'pages.import_export.export.status': 'Tình trạng',
+  'pages.import_export.export.requester': 'Người yêu cầu',
+  'pages.import_export.export.note': 'Ghi chú',
+  'pages.import_export.export.fail': 'Thất bại',
+  'pages.import_export.export.checking': 'Đang kiểm tra',
+  'pages.import_export.export.execution': 'Đang export',
+  'pages.import_export.export.success': 'Thành công',
+  'pages.import_export.import.fail': 'Thất bại',
+  'pages.import_export.import.checking': 'Đang kiểm tra',
+  'pages.import_export.import.execution': 'Đang Import',
+  'pages.import_export.import.success': 'Đã hoàn thành',
+};

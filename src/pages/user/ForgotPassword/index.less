@@ -1,0 +1,324 @@
+@px: 16rem;
+
+.content {
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+  min-height: 100vh;
+  padding: 258px 0 100px;
+  background-color: #f1f3f6;
+  :global(.ant-btn-default) {
+    background-color: transparent;
+    border-color: #c6ccd3;
+    &:hover,
+    &:focus {
+      border-color: var(--ant-primary-color-hover);
+    }
+  }
+  :global(.ant-input),
+  :global(.ant-input-affix-wrapper) {
+    background-color: transparent;
+  }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 47.5%;
+    z-index: -1;
+    background: #f1f3f6;
+    box-shadow: inset -6px -6px 20px #ffffff, inset 6px 6px 20px rgba(55, 84, 170, 0.2);
+
+    content: '';
+    @media (max-width: 1440px) {
+      left: 50%;
+    }
+    @media (max-width: 991px) {
+      content: none;
+    }
+  }
+
+  @media (max-width: 1439px) {
+    padding: 100px 0;
+  }
+  @media (max-width: 767px) {
+    padding: 60px 0 72px;
+  }
+}
+
+.logo {
+  margin-bottom: 40 / @px;
+  img {
+    display: block;
+    max-width: 130 / @px;
+  }
+}
+.container {
+  max-width: 1140/16 * 1rem;
+  margin: 0 auto;
+  padding: 0 15/16 * 1rem;
+  @media (min-width: 768px) and (max-width: 991px) {
+    max-width: 740/16 * 1rem;
+  }
+  @media (min-width: 576px) and (max-width: 767px) {
+    max-width: 540/16 * 1rem;
+  }
+}
+.title {
+  display: inline-block;
+  max-width: 375px;
+
+  margin-bottom: 24 / @px;
+  font-weight: 800;
+  font-size: 60 / @px;
+
+  letter-spacing: 1.5/16rem;
+  background: linear-gradient(141.99deg, #3169b3 20.83%, #1996d4 84.44%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.desc {
+  max-width: 439px;
+  margin-bottom: 70 / @px;
+  padding-left: 22 / @px;
+  color: #1996d4;
+  font-weight: 500;
+  font-size: 30 / @px;
+
+  letter-spacing: 0.5px;
+  border-left: 8 / @px solid #1996d4;
+}
+.copyright {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 15 / @px 0;
+  color: #737d89;
+
+  font-weight: 500;
+  font-size: 14 / @px;
+  img {
+    display: block;
+    max-width: 74 / @px;
+    margin-right: 16px;
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+  span {
+    display: block;
+    padding: 20px 16px;
+    border-left: 1px solid #c6ccd3;
+  }
+  @media (max-width: 739px) {
+    &__content {
+      display: block;
+    }
+    img {
+      max-width: 48 / @px;
+      margin-bottom: 5px;
+    }
+    span {
+      padding: 0;
+      border-left: none;
+    }
+  }
+}
+.formBlock {
+  position: relative;
+  z-index: 0;
+  max-width: 461 / @px;
+  margin-left: auto;
+  padding-top: 120 / @px;
+  @media (max-width: 1439px) {
+    padding-left: 30px;
+  }
+  @media (max-width: 991px) {
+    max-width: 100%;
+    padding-top: 0;
+    padding-left: 0;
+  }
+}
+.blockTitle {
+  display: inline-block;
+
+  margin-bottom: 60 / @px;
+  padding: 18 / @px 65 / @px;
+  background: #f1f3f6;
+  border-radius: 100 / @px;
+  box-shadow: -10 / @px -10 / @px 10 / @px #ffffff,
+    10 / @px 10 / @px 10 / @px rgba(55, 84, 170, 0.15);
+  span {
+    font-weight: 800;
+    font-size: 32 / @px;
+
+    letter-spacing: 1.5 / @px;
+
+    background: linear-gradient(141.99deg, #3169b3 20.83%, #1996d4 84.44%);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  @media (max-width: 991px) {
+    margin-bottom: 30px;
+  }
+}
+.formDesc {
+  margin-bottom: 40 / @px;
+  color: #1d1e20;
+  font-weight: 400;
+  font-size: 16 / @px;
+  line-height: 24 / @px;
+  letter-spacing: 0.5 / @px;
+}
+.formActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  :global(.ant-btn) {
+    justify-content: center;
+    min-width: 80/16rem;
+    text-align: center;
+  }
+}
+.formRequestAlert {
+  .icon {
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 40px;
+    background: #f1f3f6;
+    border-radius: 40px;
+    box-shadow: -10px -10px 10px #ffffff, 10px 10px 10px rgba(55, 84, 170, 0.15);
+    svg {
+      display: block;
+    }
+  }
+  .alertTitle {
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 32px;
+
+    letter-spacing: 1.5px;
+  }
+  .alertTitleSuccess {
+    color: #389e0d;
+  }
+  .alertTitleWarning {
+    color: #faad14;
+  }
+  .alertDesc {
+    max-width: 350px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+  }
+  @media (max-width: 739px) {
+    .icon {
+      margin: 10px auto 30px;
+    }
+    .alertTitle {
+      margin-bottom: 1rem;
+    }
+    .alertDesc {
+      max-width: 100%;
+      margin-bottom: 24px;
+    }
+  }
+}
+.formNewPassword {
+  .blockTitle {
+    margin-bottom: 40px;
+    @media (max-width: 739px) {
+      margin-bottom: 30px;
+    }
+  }
+  .formWrapper {
+    max-width: 364px;
+    @media (max-width: 739px) {
+      max-width: 100%;
+    }
+  }
+  .formActions {
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 739px) {
+  .logo {
+    margin-bottom: 48px;
+    img {
+      max-width: 66px;
+    }
+  }
+  .title {
+    align-items: center;
+    max-width: 278px;
+    margin-bottom: 18px;
+    font-size: 32px;
+  }
+  .desc {
+    padding-left: 16px;
+    font-size: 16px;
+
+    border-left-width: 4px;
+  }
+  .formBlock {
+    position: relative;
+    z-index: 0;
+    padding: 40px 16px 51px;
+    text-align: center;
+    &:after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      background: #f1f3f6;
+      box-shadow: inset -6px -6px 20px #ffffff, inset 6px 6px 20px rgba(55, 84, 170, 0.2);
+
+      content: '';
+    }
+  }
+  .formDesc {
+    margin-bottom: 24px;
+    font-weight: 400;
+    font-size: 14px;
+
+    letter-spacing: 0.5px;
+  }
+  :global(.ant-form-item) {
+    margin-bottom: 16px;
+  }
+  .blockTitle {
+    padding: 11px 39px;
+    span {
+      font-size: 18px;
+
+      letter-spacing: 1.5px;
+    }
+  }
+  .formActions {
+    justify-content: center;
+    :global(.ant-btn) {
+      min-width: 74/16rem;
+    }
+  }
+}
+@media (max-width: 414px) {
+  .title {
+    max-width: 260px;
+  }
+}

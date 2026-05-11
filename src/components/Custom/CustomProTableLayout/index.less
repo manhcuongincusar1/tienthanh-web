@@ -1,0 +1,52 @@
+.custom_pro_table_layout {
+  :global(.ant-pro-table-list-toolbar-container) {
+    background-color: white;
+  }
+  :global(.ant-btn > span) {
+    line-height: 0;
+  }
+  .ant-form-item .ant-space .ant-space-item {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+  }
+  :global(.ant-pagination-total-text) {
+    @media (max-width: 576px) {
+      display: none;
+    }
+  }
+  :global(.ant-pagination-options) {
+    @media (max-width: 576px) {
+      display: block;
+      margin-top: 5px;
+    }
+  }
+  :global(.ant-pagination) {
+    @media (max-width: 576px) {
+      display: block;
+      text-align: right;
+    }
+  }
+  :global(.ant-pro-table-search .ant-col.ant-form-item-control) {
+    min-height: 62px;
+  }
+  :global(.ant-pro-table-search .ant-row.ant-form-item) {
+    margin-bottom: 8px;
+  }
+  :global(.ant-pro-table-search .ant-space-item .ant-row) {
+    align-items: start !important;
+  }
+}
+
+.custom_pro_table_pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  background-color: white;
+}
+.layout_icon path {
+  fill: #000;
+}
+.layout_icon:hover path {
+  fill: var(--ant-primary-color-hover);
+}

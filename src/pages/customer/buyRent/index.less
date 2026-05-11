@@ -1,0 +1,80 @@
+.addMore {
+  position: relative;
+  width: 310px;
+  max-width: 100%;
+  padding-right: 39px;
+  @media (max-width: 1199px) {
+    width: 100%;
+  }
+  &.addMoreFull {
+    width: 100%;
+  }
+  .btnAddMore {
+    position: absolute;
+    right: 0;
+    bottom: 29px;
+    width: 30px;
+    min-width: auto;
+    height: 30px;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .btnRemove {
+    flex-shrink: 0;
+    width: 30/16rem;
+    height: 40/16rem;
+    margin-bottom: 24px;
+    margin-left: 9/16rem;
+    padding: 0;
+    color: #d92128;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+}
+.formItem {
+  width: 232px;
+  max-width: 100%;
+  @media (max-width: 1199px) {
+    width: 100%;
+    padding-right: 78px;
+  }
+  &.formItemFull {
+    width: 100%;
+    padding-right: 78px;
+  }
+}
+.dynamicFormItem {
+  display: flex;
+  align-items: flex-start;
+}
+
+.dynamicFormItemInput {
+  flex-grow: 1;
+}
+.form_check_box {
+  :global(.ant-checkbox-wrapper.ant-checkbox-wrapper-in-form-item) {
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: flex-end;
+  }
+}
+.collapsedBuyRent {
+  :global(.ant-pro-card-header.ant-pro-card-header-collapsible) {
+    max-width: 150px;
+  }
+  :global(.ant-pro-card-title) {
+    padding-right: 30px;
+  }
+}
+.customerEditable {
+  :global(.ant-table-content) {
+    table {
+      table-layout: auto !important;
+    }
+  }
+}
+:global(.form-digit) {
+  min-width: 300px;
+}

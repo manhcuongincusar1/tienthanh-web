@@ -1,0 +1,42 @@
+.header_container {
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  padding: 13/16rem 30/16rem;
+  line-height: 1;
+  background: #f1f3f6;
+  @media (max-width: 767px) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+.logo {
+  img {
+    display: block;
+    width: auto;
+    height: 54px;
+  }
+}
+.header {
+  &__notice {
+    display: flex;
+    align-items: center;
+    margin-right: 26/16rem;
+    margin-left: auto;
+  }
+}
+.toggleSidebar {
+  display: none;
+  margin-left: 8px;
+  @media (max-width: 767px) {
+    display: block;
+  }
+  .btnToggleSidebar {
+    padding: 0;
+    svg {
+      width: 24px;
+      height: auto;
+    }
+  }
+}

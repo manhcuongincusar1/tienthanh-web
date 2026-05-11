@@ -1,0 +1,41 @@
+export default {
+  'pages.account': 'Tài khoản',
+  'pages.account.list': 'Danh sách thành viên',
+  'pages.account.create': 'Tạo mới tài khoản',
+  'pages.account.create_member': 'Tạo mới thành viên',
+  'pages.account.information': 'Thông tin thành viên',
+  'pages.account.edit_information': 'Chỉnh sửa thông tin thành viên',
+
+  'pages.account.tooltip.search':
+    'Tìm kiếm theo Tên, SĐT, Tên chi nhánh, Quận/Huyện, Tỉnh/Thành phố, Chức vụ',
+  'pages.account.field.full_name': 'Họ tên',
+  'pages.account.field.phone': 'Số ĐT',
+  'pages.account.field.phone_number': 'Số điện thoại',
+  'pages.account.field.gender': 'Giới tính',
+  'pages.account.field.blocked': 'Khóa',
+  'pages.account.field.is_blocked': 'Khóa tài khoản?',
+  'pages.account.field.country_code': 'Mã quốc gia',
+  'pages.account.field.user_type': 'Vai trò',
+  'pages.account.field.practice_place': 'Cơ sở (Sân tập)',
+  'pages.account.field.provider_type': 'Hình thức đăng ký',
+  'pages.account.field.email': 'Email',
+
+  'pages.account.col.name': 'Tên',
+  'pages.account.col.phone_number': 'Số điện thoại',
+  'pages.account.col.branch': 'Chi nhánh',
+  'pages.account.col.province_city': 'Tỉnh/Thành phố',
+  'pages.account.col.districts': 'Quận/Huyện',
+  'pages.account.col.sell_price_range': 'Khoảng giá bán (tỷ)',
+  'pages.account.col.sell_price_from': 'Khoảng giá bán từ (tỷ)',
+  'pages.account.col.sell_price_to': 'Khoảng giá bán đến (tỷ)',
+  'pages.account.col.rent_price_range': 'Khoảng giá thuê (triệu)',
+  'pages.account.col.rent_price_from': 'Khoảng giá thuê từ (triệu)',
+  'pages.account.col.rent_price_to': 'Khoảng giá thuê đến (triệu)',
+  'pages.account.col.role': 'Chức vụ',
+  'pages.account.col.status': 'Kích hoạt',
+
+  'pages.account.field.full_name.length': 'Họ tên không được vượt quá 250 ký tự.',
+  'pages.account.field.email.length': 'Email không được vượt quá 250 ký tự.',
+
+  'pages.account.tip.full_name': 'Nhấp vào họ tên để chỉnh sửa',
+};

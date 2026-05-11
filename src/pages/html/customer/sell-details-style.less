@@ -1,0 +1,54 @@
+.addMore {
+  position: relative;
+  width: 310px;
+  max-width: 100%;
+  padding-right: 39px;
+  @media (max-width: 1199px) {
+    width: 100%;
+  }
+  &.addMoreFull {
+    width: 100%;
+  }
+  .btnAddMore {
+    position: absolute;
+    right: 0;
+    bottom: 29px;
+    width: 30px;
+    min-width: auto;
+    height: 30px;
+    padding: 0;
+  }
+
+  .btnRemove {
+    flex-shrink: 0;
+    width: 30/16rem;
+    height: 40/16rem;
+    margin-bottom: 24px;
+    margin-left: 9/16rem;
+    padding: 0;
+    color: #d92128;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+}
+.formItem {
+  width: 232px;
+  max-width: 100%;
+  @media (max-width: 1199px) {
+    width: 100%;
+    padding-right: 78px;
+  }
+  &.formItemFull {
+    width: 100%;
+    padding-right: 78px;
+  }
+}
+.dynamicFormItem {
+  display: flex;
+  align-items: flex-start;
+}
+
+.dynamicFormItemInput {
+  flex-grow: 1;
+}

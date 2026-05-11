@@ -1,0 +1,25 @@
+.permissionTable {
+  :global(.ant-table-row-expand-icon) {
+    display: inline-flex;
+  }
+  :global(.ant-table-cell) {
+    font-size: 16px;
+  }
+  :global(.ant-table-thead) {
+    :global(th:nth-child(1)) {
+      &::before {
+        display: none !important;
+      }
+      width: 0;
+      padding: 0 !important;
+    }
+  }
+}
+.wrapButton {
+  justify-content: end;
+  width: 100%;
+  margin-top: 16px;
+}
+.button {
+  min-width: 80px;
+}

@@ -1,0 +1,101 @@
+@import '~antd/es/style/variable.less';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.colorWeak {
+  filter: invert(80%);
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+.ant-pro-sider.ant-layout-sider.ant-pro-sider-fixed {
+  left: unset;
+}
+
+canvas {
+  display: block;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+@media (max-width: @screen-xs) {
+  .ant-table {
+    width: 100%;
+    overflow-x: auto;
+    &-thead > tr,
+    &-tbody > tr {
+      > th,
+      > td {
+        white-space: pre;
+        > span {
+          display: block;
+        }
+      }
+    }
+  }
+}
+.field_number_real_estate_sale {
+  text-align: right !important;
+}
+
+.field_number_real_estate_sale .ant-input {
+  text-align: right !important;
+}
+.field_number_real_estate_sale .ant-input-number-input {
+  text-align: right !important;
+}
+.table-ellipsis-link span {
+  color: #1996d4;
+  transition: all 0.1s ease;
+}
+.table-ellipsis-link {
+  &:hover span {
+    color: #3169b3;
+  }
+}
+.table-report .ant-pro-table-list-toolbar {
+  display: none;
+}
+.table-report .ant-table-wrapper {
+  margin-top: 40px;
+}
+.ant-typography.ant-typography-ellipsis {
+  color: #1d1e20;
+}
+.ant-typography.ant-typography-ellipsis a {
+  color: #1996d4;
+}
+
+a.ant-typography.ant-typography-ellipsis {
+  color: #1996d4;
+}
+
+// Compatible with IE11
+@media screen and(-ms-high-contrast: active), (-ms-high-contrast: none) {
+  body .ant-design-pro > .ant-layout {
+    min-height: 100vh;
+  }
+}
+
+@import 'styles/_global.less';
+@import 'styles/_modal.less';
+@import 'styles/_form.less';
+@import 'styles/_card.less';
+@import 'styles/_tag.less';
+@import 'styles/_table.less';
+@import 'styles/_sidebar.less';
+@import 'styles/_alert.less';
