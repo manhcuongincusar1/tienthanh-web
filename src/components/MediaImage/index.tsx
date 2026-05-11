@@ -1,13 +1,16 @@
-// MediaImage — Sprint 3 task 08.
-// Render <picture> với srcset 2 size (D6) WebP only (D7).
-// D5 KISS: nếu Lambda chưa kịp resize → onError retry sau 2s, max 3 lần.
+// MediaImage — S3/08 + S5/08 dual-mode fallback (DECISIONS D5/D6/D7/D9).
+// State machine: new (s3_key) → legacy (cdn_path cũ) → placeholder.
+// Trong cửa sổ migrate D9: record có thể có cả 2 hoặc chỉ 1.
 
-import { useState, SyntheticEvent } from 'react';
+import { useEffect, useState, SyntheticEvent } from 'react';
 import { cdnUrl, MediaSize } from '@/utils/cdn';
 
-type Props = {
+export type MediaImageProps = {
+  /** S3 key mới (sau migrate). Ưu tiên render. */
   s3Key?: string | null;
-  // Fallback URL cho data cũ (chưa migrate, dùng cdn_path).
+  /** Legacy URL (cdn_path cũ). Fallback nếu s3Key không load được. */
+  legacyUrl?: string | null;
+  /** @deprecated dùng `legacyUrl` thay. Giữ alias cho call site cũ S3/08. */
   fallbackSrc?: string;
   alt: string;
   size?: MediaSize;
@@ -17,11 +20,20 @@ type Props = {
   style?: React.CSSProperties;
 };
 
+type Mode = 'new' | 'legacy' | 'placeholder';
+
 const MAX_RETRY = 3;
 const RETRY_DELAY_MS = 2000;
 
-export const MediaImage: React.FC<Props> = ({
+function pickInitialMode(s3Key?: string | null, legacy?: string | null): Mode {
+  if (s3Key) return 'new';
+  if (legacy) return 'legacy';
+  return 'placeholder';
+}
+
+export const MediaImage: React.FC<MediaImageProps> = ({
   s3Key,
+  legacyUrl,
   fallbackSrc,
   alt,
   size = 'large',
@@ -30,43 +42,75 @@ export const MediaImage: React.FC<Props> = ({
   className,
   style,
 }) => {
-  const [retryCount, setRetryCount] = useState(0);
+  const legacy = legacyUrl ?? fallbackSrc ?? null;
+  const [mode, setMode] = useState<Mode>(() => pickInitialMode(s3Key, legacy));
+  const [retry, setRetry] = useState(0);
 
-  // Fallback chain: s3Key → cdnUrl. Nếu không có s3Key, dùng fallbackSrc (legacy data).
-  const primarySrc = s3Key ? cdnUrl(s3Key, size) : fallbackSrc || '';
-  if (!primarySrc) return null;
+  // Reset state khi prop đổi (vd list re-render với key khác).
+  useEffect(() => {
+    setMode(pickInitialMode(s3Key, legacy));
+    setRetry(0);
+  }, [s3Key, legacy]);
 
-  const handleError = (e: SyntheticEvent<HTMLImageElement>) => {
-    if (!s3Key) return; // fallbackSrc URL đã cứng — không retry.
-    if (retryCount >= MAX_RETRY) return;
-    setTimeout(() => {
-      setRetryCount((c) => c + 1);
-      // Cache-bust để browser không serve lại response 404 cũ.
-      const target = e.target as HTMLImageElement;
-      target.src = `${cdnUrl(s3Key, size)}?t=${Date.now()}`;
-    }, RETRY_DELAY_MS);
+  const handleError = (_e: SyntheticEvent<HTMLImageElement>) => {
+    if (mode === 'new') {
+      if (retry < MAX_RETRY) {
+        setTimeout(() => setRetry((r) => r + 1), RETRY_DELAY_MS);
+      } else if (legacy) {
+        setMode('legacy');
+        setRetry(0);
+      } else {
+        setMode('placeholder');
+      }
+    } else if (mode === 'legacy') {
+      setMode('placeholder');
+    }
   };
 
-  // Nếu chỉ có fallbackSrc (legacy), render <img> thường.
-  if (!s3Key) {
+  if (mode === 'placeholder') {
+    return (
+      <div
+        className={className}
+        style={{
+          width,
+          height,
+          background: '#f0f0f0',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#bbb',
+          ...style,
+        }}
+      >
+        —
+      </div>
+    );
+  }
+
+  if (mode === 'legacy') {
     return (
       <img
-        src={fallbackSrc}
+        src={legacy as string}
         alt={alt}
         loading="lazy"
         width={width}
         height={height}
         className={className}
         style={style}
+        onError={handleError}
       />
     );
   }
 
+  // mode === 'new'
+  // Cache-bust trên retry để bypass CloudFront cache 404.
+  const primarySrc =
+    cdnUrl(s3Key as string, size) + (retry > 0 ? `?t=${Date.now()}` : '');
   return (
     <picture>
       <source
         type="image/webp"
-        srcSet={`${cdnUrl(s3Key, 'thumbnail')} 200w, ${cdnUrl(s3Key, 'large')} 1280w`}
+        srcSet={`${cdnUrl(s3Key as string, 'thumbnail')} 200w, ${cdnUrl(s3Key as string, 'large')} 1280w`}
         sizes="(max-width: 768px) 100vw, 50vw"
       />
       <img

@@ -1,0 +1,49 @@
+name: bundle-report
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 1' # weekly Monday 2AM UTC = 9AM VN
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build prod
+        env:
+          REACT_APP_API_URL: https://tienthanhapi.datviet.ai
+          REACT_APP_CDN_BASE: https://tienthanhcdn.datviet.ai
+        run: npm run build-prod
+
+      - name: Bundle report
+        id: report
+        run: node scripts/bundle-report.js
+        continue-on-error: true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bundle-report
+          path: dist/bundle-report.json
+          retention-days: 30
+
+      - name: Telegram alert if over budget
+        if: steps.report.outcome == 'failure'
+        env:
+          BOT: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          INITIAL=$(jq .initialGzipKB dist/bundle-report.json)
+          BUDGET=$(jq .budgetInitialKB dist/bundle-report.json)
+          MSG="[TienThanh][WARN] FE bundle initial ${INITIAL} KB > budget ${BUDGET} KB — run ${GITHUB_RUN_ID}"
+          curl -s -X POST "https://api.telegram.org/bot${BOT}/sendMessage" \
+            -d "chat_id=-5226544067" \
+            --data-urlencode "text=${MSG}" >/dev/null || true

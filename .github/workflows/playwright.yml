@@ -1,0 +1,51 @@
+name: playwright-smoke
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 1 * * *' # daily 1AM UTC = 8AM VN
+
+concurrency:
+  group: smoke-prod
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    env:
+      PW_BASE_URL: ${{ secrets.PW_BASE_URL || 'https://tienthanh.datviet.ai' }}
+      PW_USER: ${{ secrets.PW_USER }}
+      PW_PASS: ${{ secrets.PW_PASS }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Run smoke
+        id: smoke
+        run: npx playwright test --project=smoke
+        continue-on-error: true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 30
+
+      - name: Telegram alert on failure
+        if: steps.smoke.outcome == 'failure'
+        env:
+          BOT: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          MSG="[TienThanh][CRITICAL] Playwright smoke FAIL on prod — run ${GITHUB_RUN_ID}"
+          curl -s -X POST "https://api.telegram.org/bot${BOT}/sendMessage" \
+            -d "chat_id=-5226544067" \
+            --data-urlencode "text=${MSG}" >/dev/null || true

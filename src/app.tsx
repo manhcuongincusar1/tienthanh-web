@@ -48,6 +48,30 @@ import Header from './components/Header';
 import { mpireServiceWorker } from './utils';
 import fetchUserInfo from '@/helpers/fetchUserInfo';
 import HandleLocalStorageChange from '@/pages/HandleLocalStorageChange';
+import { broadcastAuth, onAuthEvent } from '@/utils/authChannel';
+import { startPermissionPoll, refreshPermission } from '@/utils/permissionRefresh';
+
+// S5/09: lazy global hooks gọi từ httpRequest interceptor (tránh circular import).
+if (typeof window !== 'undefined') {
+  (window as any).__titaOnLogout = () => {
+    broadcastAuth({ type: 'logout' });
+  };
+  (window as any).__titaOnForbidden = () => {
+    refreshPermission();
+  };
+
+  // Cross-tab logout: tab khác logout → tab này về login.
+  onAuthEvent((e) => {
+    if (e.type === 'logout') {
+      try {
+        history.push('/user/login');
+      } catch (_e) { /* noop */ }
+    }
+  });
+
+  // Poll permission mỗi 5 phút khi tab visible.
+  startPermissionPoll();
+}
 
 message.config({
   maxCount: 1,

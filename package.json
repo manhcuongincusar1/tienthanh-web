@@ -5,6 +5,8 @@
   "description": "An out-of-box UI solution for enterprise applications",
   "scripts": {
     "analyze": "cross-env ANALYZE=1 umi build",
+    "bundle:report": "npm run build-prod && node scripts/bundle-report.js",
+    "bundle:analyze": "cross-env ANALYZE=1 NODE_OPTIONS=--openssl-legacy-provider umi build",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider umi build",
     "build-uat": "cross-env NODE_OPTIONS=--openssl-legacy-provider REACT_APP_ENV=uat umi build",
     "build-prod": "cross-env NODE_OPTIONS=--openssl-legacy-provider REACT_APP_ENV=prod umi build",
