@@ -7,9 +7,29 @@ import routes from './routes';
 
 const { REACT_APP_ENV } = process.env;
 
+// Sprint 5 task 01 — domain switch.
+// 2 env: dev (local) + prod (DECISIONS E10 — không có staging).
+// Build-time inject qua UMI `define`. Runtime override qua `public/runtime-env.js` (task FE-11).
+const API_URL_MAP: Record<string, string> = {
+  dev: 'http://localhost:3002',
+  prod: 'https://tienthanhapi.datviet.ai',
+};
+const CDN_BASE_MAP: Record<string, string> = {
+  dev: 'http://localhost:3002/uploads',
+  prod: 'https://tienthanhcdn.datviet.ai',
+};
+const envName = REACT_APP_ENV || 'dev';
+
 export default defineConfig({
   base: '/cms',
   hash: true,
+  define: {
+    'process.env.REACT_APP_ENV': envName,
+    'process.env.REACT_APP_API_URL':
+      process.env.REACT_APP_API_URL || API_URL_MAP[envName] || API_URL_MAP.dev,
+    'process.env.REACT_APP_CDN_BASE':
+      process.env.REACT_APP_CDN_BASE || CDN_BASE_MAP[envName] || CDN_BASE_MAP.dev,
+  },
   antd: {},
   dva: {
     hmr: true,
@@ -77,4 +97,43 @@ export default defineConfig({
   webpack5: {},
   exportStatic: {},
   workerLoader: {},
+  chainWebpack(memo) {
+    memo.optimization.splitChunks({
+      chunks: 'all',
+      minSize: 30000,
+      cacheGroups: {
+        antd: {
+          name: 'vendor-antd',
+          test: /[\\/]node_modules[\\/](antd|@ant-design)[\\/]/,
+          priority: 30,
+          chunks: 'all',
+        },
+        moment: {
+          // Giữ moment.js per DECISIONS C7. Tách chunk để cache lâu dài.
+          name: 'vendor-moment',
+          test: /[\\/]node_modules[\\/](moment|moment-timezone)[\\/]/,
+          priority: 25,
+          chunks: 'all',
+        },
+        lodash: {
+          name: 'vendor-lodash',
+          test: /[\\/]node_modules[\\/]lodash[\\/]/,
+          priority: 25,
+          chunks: 'all',
+        },
+        echarts: {
+          name: 'vendor-echarts',
+          test: /[\\/]node_modules[\\/](echarts|zrender|@antv)[\\/]/,
+          priority: 22,
+          chunks: 'all',
+        },
+        vendors: {
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/]/,
+          priority: 10,
+          chunks: 'all',
+        },
+      },
+    });
+  },
 });

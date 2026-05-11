@@ -1,0 +1,1 @@
+window.__RUNTIME_CONFIG__ = {"REACT_APP_ENV":"dev","REACT_APP_API_URL":"http://localhost:3002","REACT_APP_CDN_BASE":"http://localhost:3002/uploads"};

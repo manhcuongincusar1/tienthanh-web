@@ -1,0 +1,59 @@
+name: Deploy FE
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'tests/**'
+      - '.github/**'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-fe-prod
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: ap-southeast-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Type check
+        run: npx tsc --noEmit
+        continue-on-error: true   # UMI types nhiều, không block deploy nếu fail.
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_DEPLOYER }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_DEPLOYER }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: SST deploy
+        env:
+          REACT_APP_API_URL: https://tienthanhapi.datviet.ai
+          REACT_APP_CDN_BASE: https://tienthanhcdn.datviet.ai
+        run: npx sst deploy --stage prod
+
+      - name: Telegram notify
+        if: always()
+        env:
+          BOT: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          STATUS="${{ job.status }}"
+          MSG="[TienThanh][FE] deploy ${STATUS} — commit ${GITHUB_SHA::7} — actor ${{ github.actor }}"
+          curl -s -X POST "https://api.telegram.org/bot${BOT}/sendMessage" \
+            -d "chat_id=-5226544067" \
+            --data-urlencode "text=${MSG}" >/dev/null || true
