@@ -37,7 +37,7 @@ axiosInstance.interceptors.request.use(
     if (error) {
       localStorage.removeItem(TOKEN);
       localStorage.removeItem('currentWorkSpaceId');
-      window.location.href = `/cms/user/login`;
+      window.location.href = `/user/login`;
     }
 
     return Promise.reject(error);

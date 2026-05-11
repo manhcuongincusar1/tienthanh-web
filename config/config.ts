@@ -21,7 +21,9 @@ const CDN_BASE_MAP: Record<string, string> = {
 const envName = REACT_APP_ENV || 'dev';
 
 export default defineConfig({
-  base: '/cms',
+  // Prod deploy ở root domain (tienthanh.datviet.ai), không có /cms prefix.
+  // Local dev có thể vẫn dùng /cms qua proxy nếu cần.
+  base: process.env.REACT_APP_ENV === 'prod' ? '/' : '/cms',
   hash: true,
   define: {
     'process.env.REACT_APP_ENV': envName,

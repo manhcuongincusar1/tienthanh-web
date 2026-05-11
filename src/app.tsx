@@ -128,14 +128,19 @@ export async function getInitialState(): Promise<{
   const isBlankPath = blankPath.includes(history.location.pathname);
 
   if (!isBlankPath) {
-    const { currentUser, listWorkspace }: any = await fetchUserInfo();
-    // const listWorkspace = await branchesService.getListWorkspace();
-    // const branches_list = listWorkspace?.branches_list;
-    // if (currentUser) {
-    //   currentUser.currentWorkSpace = null;
-    // }
-    //
-    if (_.isUndefined(currentUser.currentWorkSpace) || _.isEmpty(currentUser.currentWorkSpace)) {
+    const userInfo: any = await fetchUserInfo();
+    // 401 ở fetchUserInfo → returns undefined + history.push(loginPath) đã chạy.
+    // Tránh destructure undefined crash splash screen.
+    if (!userInfo) {
+      return {
+        fetchUserInfo,
+        settings: defaultSettings,
+        show404: false,
+        show403: false,
+      };
+    }
+    const { currentUser, listWorkspace } = userInfo;
+    if (_.isUndefined(currentUser?.currentWorkSpace) || _.isEmpty(currentUser?.currentWorkSpace)) {
       localStorage.removeItem(TOKEN);
       localStorage.removeItem('currentWorkSpaceId');
       history.push(loginPath);
