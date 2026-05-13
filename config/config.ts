@@ -25,6 +25,11 @@ export default defineConfig({
   // Local dev có thể vẫn dùng /cms qua proxy nếu cần.
   base: process.env.REACT_APP_ENV === 'prod' ? '/' : '/cms',
   hash: true,
+  // Bắt buộc khai báo vendor chunks ở đây để html-webpack-plugin inject <script> tag.
+  // Không có dòng này: umi.js entry queue `W.O(["vendor"], ...)` chờ vendor chunk
+  // không bao giờ load → React không mount → splash đứng vĩnh viễn (dev + prod).
+  // Order quan trọng: vendor trước, umi sau. vendor-echarts là async, webpack tự lo.
+  chunks: ['vendor', 'vendor-antd', 'vendor-lodash', 'vendor-moment', 'umi'],
   define: {
     'process.env.REACT_APP_ENV': envName,
     'process.env.REACT_APP_API_URL':
@@ -100,6 +105,11 @@ export default defineConfig({
   exportStatic: {},
   workerLoader: {},
   chainWebpack(memo) {
+    // Dev: MFSU pre-bundles vendors + lock `chunks: ['umi']` (mfsu.js:250 stage:Infinity).
+    // Custom splitChunks tạo orphan vendor.js mà HTML không inject → entry chờ
+    // `W.O(["vendor"], ...)` mãi mãi → React không mount → splash đứng vĩnh viễn.
+    // Chỉ split ở prod build (MFSU off mặc định) — `chunks: [...]` ở trên inject đủ.
+    if (process.env.NODE_ENV !== 'production') return;
     memo.optimization.splitChunks({
       chunks: 'all',
       minSize: 30000,

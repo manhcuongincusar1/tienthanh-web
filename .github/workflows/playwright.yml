@@ -2,8 +2,10 @@ name: playwright-smoke
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 1 * * *' # daily 1AM UTC = 8AM VN
+  # Schedule disabled — chạy thủ công qua "Run workflow" trên GitHub Actions UI
+  # hoặc local: `npx playwright test --project=smoke`.
+  # schedule:
+  #   - cron: '0 1 * * *' # daily 1AM UTC = 8AM VN
 
 concurrency:
   group: smoke-prod
