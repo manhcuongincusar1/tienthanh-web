@@ -6,7 +6,7 @@ import axios from 'axios';
 //   1. POST /_api/file/presign { filename, mime, size, isConfidential? }
 //      → BE generate presigned PUT URL + insert media row → response { id, s3_key, upload_url, cdn_path, ... }
 //   2. FE PUT file thẳng S3 qua upload_url
-//   3. Lambda S3 event tự resize → CDN serve qua tienthanhcdn.datviet.ai/large/<key>
+//   3. Lambda S3 event tự resize → CDN serve qua tienthanhcdn.ankapong.com/large/<key>
 
 type PresignResponse = {
   data: {

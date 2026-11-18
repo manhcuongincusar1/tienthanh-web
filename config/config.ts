@@ -12,16 +12,16 @@ const { REACT_APP_ENV } = process.env;
 // Build-time inject qua UMI `define`. Runtime override qua `public/runtime-env.js` (task FE-11).
 const API_URL_MAP: Record<string, string> = {
   dev: 'http://localhost:3002',
-  prod: 'https://tienthanhapi.datviet.ai',
+  prod: 'https://tienthanhapi.ankapong.com',
 };
 const CDN_BASE_MAP: Record<string, string> = {
   dev: 'http://localhost:3002/uploads',
-  prod: 'https://tienthanhcdn.datviet.ai',
+  prod: 'https://tienthanhcdn.ankapong.com',
 };
 const envName = REACT_APP_ENV || 'dev';
 
 export default defineConfig({
-  // Prod deploy ở root domain (tienthanh.datviet.ai), không có /cms prefix.
+  // Prod deploy ở root domain (tienthanh.ankapong.com), không có /cms prefix.
   // Local dev có thể vẫn dùng /cms qua proxy nếu cần.
   base: process.env.REACT_APP_ENV === 'prod' ? '/' : '/cms',
   hash: true,

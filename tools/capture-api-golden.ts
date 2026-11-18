@@ -3,7 +3,7 @@
 // Cookie / Bearer token đặt qua env (KHÔNG commit).
 //
 // Usage:
-//   BE_URL=https://tienthanhapi.datviet.ai \
+//   BE_URL=https://tienthanhapi.ankapong.com \
 //   AUTH_BEARER='eyJ...' \
 //   npx ts-node tools/capture-api-golden.ts old   # capture trước S1 cutover
 //   npx ts-node tools/capture-api-golden.ts new   # capture sau S1 (vào DB PG)

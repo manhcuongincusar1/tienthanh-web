@@ -2,7 +2,8 @@
 
 // SST v3 (ion) — Pulumi-backed deploy cho UMI static site.
 // Deploy: AWS_REGION=ap-southeast-1 npx sst deploy --stage prod
-// Stage prod: custom domain tienthanh.datviet.ai (Route53 zone datviet.ai từ Pulumi BE infra).
+// Stage prod: custom domain tienthanh.ankapong.com (Route53 zone ankapong.com) + alias tên cũ tienthanh.datviet.ai
+// (datviet.ai hết hạn 17/12/2026 — gỡ alias trước ngày đó).
 
 const REGION = "ap-southeast-1";
 
@@ -21,10 +22,10 @@ export default $config({
     const isProd = $app.stage === "prod";
 
     const apiUrl = isProd
-      ? "https://tienthanhapi.datviet.ai"
+      ? "https://tienthanhapi.ankapong.com"
       : "http://localhost:3002";
     const cdnBase = isProd
-      ? "https://tienthanhcdn.datviet.ai"
+      ? "https://tienthanhcdn.ankapong.com"
       : "http://localhost:3002/uploads";
 
     // runtime-env.js được sinh bởi `npm run build-prod` (qua runtime-env-cra)
@@ -59,7 +60,9 @@ export default $config({
         command: isProd ? "npm run build-prod" : "npm run build",
         output: "dist",
       },
-      domain: isProd ? "tienthanh.datviet.ai" : undefined,
+      // Tên logic bản ghi Route 53 của SST tính theo CHÍNH tên miền, nên đưa tên cũ xuống `aliases` không làm
+      // xoá-tạo lại bản ghi tienthanh.datviet.ai đang chạy. Cert được thay (thêm tên = cert mới).
+      domain: isProd ? { name: "tienthanh.ankapong.com", aliases: ["tienthanh.datviet.ai"] } : undefined,
       environment: {
         REACT_APP_API_URL: apiUrl,
         REACT_APP_CDN_BASE: cdnBase,
